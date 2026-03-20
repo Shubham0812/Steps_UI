@@ -1,0 +1,8 @@
+Use this folder for models owned only by the `Main` feature.
+
+Put a type here when:
+- it is only used by `Main`
+- it represents `Main` screen state, display data, or local domain values
+- moving it into `Core` would make the project broader than necessary
+
+If the model later becomes shared by multiple features, promote it to `Core/Common/Models` or `Core/Models` based on scope.

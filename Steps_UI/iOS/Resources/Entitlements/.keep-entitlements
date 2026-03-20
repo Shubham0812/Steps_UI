@@ -1,0 +1,10 @@
+Store entitlement files for app targets and capabilities here.
+
+This is the right place for files that describe capabilities such as:
+- push notifications
+- app groups
+- iCloud/CloudKit
+- associated domains
+- widget or extension entitlements
+
+Keep entitlement files out of random target folders so capability-related configuration stays easy to find and audit.

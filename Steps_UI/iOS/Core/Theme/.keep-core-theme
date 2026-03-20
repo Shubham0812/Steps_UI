@@ -1,0 +1,9 @@
+Use this folder for theme definitions and design tokens that describe the app's visual system.
+
+Put a type here when it defines:
+- semantic colors
+- theme palettes
+- typography or spacing tokens
+- structures used to switch or describe visual themes
+
+Keep concrete view modifiers or screen-specific styling out of this folder unless they are truly part of the global design system.

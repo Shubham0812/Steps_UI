@@ -1,0 +1,8 @@
+Store bundled font families and font asset files here.
+
+Use this folder when:
+- adding `.ttf` or `.otf` files shipped with the app
+- grouping files by font family for clarity
+- updating the app's typography stack in a way that should stay discoverable
+
+If `Steps_UI` adopts custom typography later, add one subfolder per family and keep registration logic in `Core/Utils/FontManager.swift`.

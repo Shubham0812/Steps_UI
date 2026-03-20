@@ -1,0 +1,8 @@
+Use this folder for reusable SwiftUI building blocks that can appear in more than one feature.
+
+Put a view here when:
+- it is generic enough to be reused across features
+- it does not depend on one feature's state model
+- it improves consistency when shared instead of copied
+
+If a view only supports `Main` or another single feature, keep it inside that feature instead.

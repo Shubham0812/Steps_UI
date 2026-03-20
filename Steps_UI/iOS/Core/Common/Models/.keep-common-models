@@ -1,0 +1,8 @@
+Use this folder for lightweight models that are reused across multiple features and are not owned by a single flow.
+
+Put a type here when:
+- several features need the same shape or enum
+- the type is still app-level and presentation-friendly
+- moving it into one feature would create cross-feature coupling
+
+Do not put feature-specific request/response models here. Those should stay inside the feature until reuse is proven.

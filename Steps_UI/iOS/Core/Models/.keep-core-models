@@ -1,0 +1,8 @@
+Use this folder for heavier app-level models that are shared across features but are not just reusable UI-facing helper types.
+
+Put a type here when:
+- it represents app-wide state or domain concepts
+- multiple features rely on it
+- it should not live under `Common/Models` because it is more central than presentational
+
+Examples for `Steps_UI` could include shared activity summaries, goal types, or persisted app configuration models used by multiple screens.

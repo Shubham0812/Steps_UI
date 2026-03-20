@@ -1,0 +1,8 @@
+Store localized resource files here.
+
+Use this folder when:
+- adding new languages
+- storing translated strings resources
+- keeping localization files grouped by locale instead of scattering them across features
+
+Feature code should reference localization keys from here rather than hard-coding user-facing strings.

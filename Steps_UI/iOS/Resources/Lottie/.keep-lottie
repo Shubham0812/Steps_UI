@@ -1,0 +1,8 @@
+Store bundled Lottie animation JSON files here.
+
+Use this folder when:
+- adding `.json` animation files consumed by a Lottie wrapper view
+- grouping related animations under a subfolder when the set grows
+- keeping non-image motion assets out of the asset catalog
+
+Animation rendering code belongs in Swift files, but the raw animation data should live here.

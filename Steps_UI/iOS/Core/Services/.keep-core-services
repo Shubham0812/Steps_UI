@@ -1,0 +1,8 @@
+Use this folder for long-lived app-wide services, managers, repositories, observers, and system integrations.
+
+Put a type here when:
+- it talks to the system, persistence, network, purchases, or a third-party SDK
+- it is shared by multiple features
+- it owns business or infrastructure behavior rather than SwiftUI rendering
+
+Do not put feature-only helpers here. A service should stay under the feature until it becomes clearly cross-cutting.
