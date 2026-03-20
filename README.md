@@ -1,6 +1,11 @@
 # Steps_UI
 
-`Steps_UI` follows the same high-level iOS project organization used in `apps/WordGame_UI/WordGame_UI`: shared code lives in `iOS/Core`, feature-owned code lives in `iOS/Features`, and bundled assets/configuration live in `iOS/Resources`. The goal is a structure that stays easy to navigate as the app grows without mixing unrelated concerns.
+`Steps_UI` is organized around three clear layers inside `iOS`:
+- `Core` for app-wide shared code
+- `Features` for feature-owned UI and logic
+- `Resources` for bundled assets and configuration
+
+The current project is intentionally small. `Main` is the only implemented feature today, and the rest of the structure is in place so new work has a predictable home as the app grows.
 
 ## Folder Hierarchy
 
@@ -34,44 +39,52 @@ Steps_UI/
 ## Top-Level Groups
 
 ### `iOS/Core`
-App-wide code shared across multiple features.
+App-wide shared code that should not belong to one feature.
 
-- `Common`: reusable UI building blocks and shared models used by more than one feature.
-- `Controllers`: app lifecycle, routing, scene/app entry, and other app-level coordinators/controllers.
-- `Extensions`: focused type extensions for Foundation, SwiftUI, and system types.
-- `Models`: cross-feature domain models that should not belong to a single feature.
-- `Services`: shared managers, clients, persistence layers, and other long-lived app services.
-- `Theme`: design tokens, theme definitions, and styling primitives shared across the app.
-- `Utils`: lightweight helpers, constants, and utility types that are broadly reusable.
+- `Common`: reusable shared models and reusable shared SwiftUI components.
+- `Controllers`: app entry, lifecycle, routing, and other app-level coordination.
+- `Extensions`: focused extensions on system and standard library types.
+- `Models`: broader shared domain models used across features.
+- `Services`: long-lived services, managers, repositories, and integrations.
+- `Theme`: theme structures and design tokens.
+- `Utils`: lightweight helpers, constants, and utility types.
 
 ### `iOS/Features`
-Feature-owned code. Each feature gets its own folder and should contain only the code required for that feature unless reuse across features is proven.
+Feature-owned code. Each feature should keep its own views, view models, and local models together.
 
-Current feature structure:
-- `Models`: feature-specific data structures.
-- `ViewModels`: feature state and presentation logic.
-- `Views`: SwiftUI views/screens for that feature.
+Current state:
+- `Main` is the only feature currently implemented.
+- `Main/Views` contains the current screen UI.
+- `Main/ViewModels` contains feature state/presentation logic.
+- `Main/Models` is reserved for `Main`-only model types.
 
 ### `iOS/Resources`
-Bundled app resources such as asset catalogs, font files, localization files, entitlement files, animations, plist/config files, sample data, and other static assets required at runtime.
+Bundled non-code assets and configuration.
+
+- `Assets.xcassets`: app icons, colors, and image assets.
+- `Entitlements`: target entitlement files.
+- `Fonts`: bundled font files and families.
+- `Localization`: localized string resources by locale.
+- `Lottie`: animation JSON assets.
 
 ## Placement Guidelines
 
 - Put new screens and feature flows in `iOS/Features/<Feature>/Views`.
-- Put feature presentation logic and screen state in `iOS/Features/<Feature>/ViewModels`.
-- Put feature-specific models and helper types in `iOS/Features/<Feature>/Models`.
-- Keep feature-specific services inside the feature first; move them to `iOS/Core/Services` only when they are reused across features or clearly app-wide.
-- Move reusable shared UI to `iOS/Core/Common/Views`.
-- Move shared models used by multiple features to `iOS/Core/Common/Models` or `iOS/Core/Models`, depending on whether they are UI-facing shared models or broader domain models.
-- Put app lifecycle and navigation entrypoints in `iOS/Core/Controllers`.
-- Keep extensions in `iOS/Core/Extensions` and utilities in `iOS/Core/Utils` only when they are truly cross-cutting.
-- Add new bundled files to `iOS/Resources` in a subfolder that matches their type or purpose.
+- Put feature presentation logic and feature-owned state in `iOS/Features/<Feature>/ViewModels`.
+- Put feature-only model types in `iOS/Features/<Feature>/Models`.
+- Keep reusable shared UI in `iOS/Core/Common/Views`.
+- Keep shared lightweight models in `iOS/Core/Common/Models`.
+- Move broader cross-feature domain models to `iOS/Core/Models`.
+- Move shared infrastructure and integrations to `iOS/Core/Services`.
+- Keep app startup, app lifecycle, and navigation entrypoints in `iOS/Core/Controllers`.
+- Put design tokens and theme definitions in `iOS/Core/Theme`.
+- Put helpers and extensions in `iOS/Core/Utils` and `iOS/Core/Extensions` only when they are truly cross-cutting.
+- Add bundled assets to the matching folder under `iOS/Resources`.
 
 ## Conventions
 
-- Mirror the `WordGame_UI` architectural pattern, not its game-specific feature naming.
-- Use singular, stable folder names that describe responsibility clearly.
+- Prefer feature ownership first. Move code into `Core` only when it is clearly shared.
+- Keep folder names stable and responsibility-driven.
 - Prefer one primary type per file.
-- Default to feature ownership first; promote code to `Core` only when reuse or app-wide responsibility is clear.
-- Do not mix views, models, services, and resources in the same folder unless the structure already establishes that convention.
-- Keep the Xcode project filesystem-synchronized so the on-disk structure remains the source of truth.
+- Do not mix views, models, services, and resources in the same folder when they have dedicated homes already.
+- Keep the Xcode project filesystem-synchronized so the folder structure on disk stays the source of truth.
